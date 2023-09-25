@@ -38,7 +38,7 @@ pipeline {
 //        steps {
 //          sh 'kubectl apply -f app-deploy.yaml'
 //         }
-      }
+//    }
     }
 
 //  post {
