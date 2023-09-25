@@ -19,7 +19,12 @@ pipeline {
           sh "mvn clean package && cp target/*.jar . "
      }
     }
-     
+     stage("Fix the permission issue") {
+            steps {
+                sh "sudo chown root:jenkins /run/docker.sock"
+            }
+
+        }
      stage('Docker Image Build') {     
         steps {
               sh 'sudo docker build -t myjava-image . '
