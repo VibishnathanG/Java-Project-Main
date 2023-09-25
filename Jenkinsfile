@@ -29,7 +29,7 @@ pipeline {
      steps {
       withCredentials([usernamePassword(credentialsId: '40cae5ac-7ed7-44b1-a204-96331c474bce', passwordVariable: 'Password', usernameVariable: 'Username')]) {
       sh '''
-        docker login -u $Username --password-stdin
+        echo "$Password" | sudo -S docker login -u $Username --password-stdin
         docker image tag myjava-image vibish/myjava-image:test
         docker image push vibish/myjava-image:test
       '''
