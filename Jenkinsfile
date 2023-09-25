@@ -1,6 +1,6 @@
 pipeline {
    environment {
-     git_url = "https://github.com/salilkul/java-project.git"
+     git_url = "https://github.com/VibishnathanG/Java-Project-Main.git"
      git_branch = "master"
    }
 
@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Pull Source') {
       steps {
-        git credentialsId: 'dab1686c-ccf4-47d7-9eaf-1958262f6303', branch: "${git_branch}", url: "${git_url}"
+        git credentialsId: '772dc5ec-e86c-4c03-86ac-4dc77aca8bfc', branch: "${git_branch}", url: "${git_url}"
        
       }
      }
@@ -27,10 +27,10 @@ pipeline {
              }
         stage('Docker image push') {
            steps {
-                 withCredentials([usernamePassword(credentialsId: '6b60484c-e184-4668-b9d7-c402672d2a4f', passwordVariable: 'Password', usernameVariable: 'Username')]) {
+                 withCredentials([usernamePassword(credentialsId: '40cae5ac-7ed7-44b1-a204-96331c474bce', passwordVariable: 'Password', usernameVariable: 'Username')]) {
                  sh "sudo docker login -u ${env.Username} -p ${env.Password}"
-                 sh "sudo docker image tag myjava-image salilkul87/myjava-image:test"
-                 sh "sudo docker image push salilkul87/myjava-image:test" 
+                 sh "sudo docker image tag myjava-image vibish/myjava-image:test"
+                 sh "sudo docker image push vibish/myjava-image:test" 
                } 
              }  
           }
