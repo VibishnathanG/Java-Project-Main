@@ -4,7 +4,7 @@ pipeline {
      git_branch = "master"
    }
 
-  agent {label 'dev'}
+  agent any
  
   stages {
     stage('Pull Source') {
