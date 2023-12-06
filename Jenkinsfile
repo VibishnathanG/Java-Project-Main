@@ -2,6 +2,7 @@ pipeline {
    environment {
      git_url = "https://github.com/VibishnathanG/Java-Project-Main.git"
      git_branch = "master"
+     KUBECONFIG = credentials('a0513d49-7fe4-43e8-aa2f-20c5f5c0a1c2')
    }
 
   agent any
@@ -36,8 +37,11 @@ pipeline {
              }  
           }
       stage('Deploy app') {
+         
           steps {
-          sh 'kubectl apply -f app-deploy.yaml'
+             script {
+                    sh "kubectl --kubeconfig=${KUBECONFIG} apply -f app-deploy.yaml"
+                }
          }
    }
     }
